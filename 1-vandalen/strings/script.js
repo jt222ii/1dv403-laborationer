@@ -7,9 +7,30 @@ window.onload = function(){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren.
-		var charArray = [];
+		var teststring = "";
+		if (str === "")
+		{
+			throw new Error("ANGE NÅGOT NOOB");
+		}
+	
+		for (var i = 0; i < str.length; i++) 
+		{
+			if(str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90 || str.charCodeAt(i) >= 196 && str.charCodeAt(i) <= 214)
+			{
+				teststring += str.charAt(i).toLowerCase();
+			}
+			else
+			{
+				teststring += str.charAt(i).toUpperCase();
+			}
+		}
+		str = teststring;
+		str = str.split(/[aA]/g).join("#");
+		return str;
+		
+	/*	var charArray = [];
 		charArray = str.split("");
-		if (str == "")
+		if (str === "")
 		{
 			throw new Error("ANGE NÅGOT NOOB");
 		}
@@ -28,11 +49,7 @@ window.onload = function(){
 		str = charArray.toString();
 		str = str.split(/[aA]/g).join("#");
 		str = str.split(",").join("");
-		return [str];
-
-
-
-
+		return [str];*/
 
 	};
 	// ------------------------------------------------------------------------------
