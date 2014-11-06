@@ -6,9 +6,29 @@ window.onload = function(){
 	var convertString = function(str){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
-		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
+		// Vid fel, kasta ett undantag med ett meddelande till användaren.
+		var charArray = [];
+		charArray = str.split("");
+		if (str == "")
+		{
+			throw new Error("ANGE NÅGOT NOOB");
+		}
 	
-
+		for (var i = 0; i < str.length; i++) 
+		{
+			if(charArray[i] === charArray[i].toUpperCase())
+			{
+				charArray[i] = charArray[i].toLowerCase();
+			}
+			else
+			{
+				charArray[i] = charArray[i].toUpperCase();
+			}
+		}
+		str = charArray.toString();
+		str = str.split(/[aA]/g).join("#");
+		str = str.split(",").join("");
+		return [str];
 
 
 
