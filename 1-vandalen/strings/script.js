@@ -7,7 +7,7 @@ window.onload = function(){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren.
-		var teststring = "";
+		var newString = "";
 		if (str === "")
 		{
 			throw new Error("ANGE NÅGOT NOOB");
@@ -17,14 +17,14 @@ window.onload = function(){
 		{
 			if(str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90 || str.charCodeAt(i) >= 196 && str.charCodeAt(i) <= 214)
 			{
-				teststring += str.charAt(i).toLowerCase();
+				newString  += str.charAt(i).toLowerCase();
 			}
 			else
 			{
-				teststring += str.charAt(i).toUpperCase();
+				newString  += str.charAt(i).toUpperCase();
 			}
 		}
-		str = teststring;
+		str = newString ;
 		str = str.split(/[aA]/g).join("#");
 		return str;
 		
