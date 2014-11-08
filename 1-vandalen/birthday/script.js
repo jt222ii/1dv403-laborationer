@@ -48,8 +48,9 @@ window.onload = function(){
 			//annars om man fyllt år
 			else
 			{
-				BirthDayNextYear.setFullYear(usersBirthday.getFullYear()-1);
-				return (usersBirthday.getTime() - BirthDayNextYear.getTime())/1000/60/60/24 ;
+			/*	BirthDayNextYear.setFullYear(usersBirthday.getFullYear()-1);
+				return (usersBirthday.getTime() - BirthDayNextYear.getTime())/1000/60/60/24 ;  */
+				return numberOfDays + 365;
 			}
 
 
