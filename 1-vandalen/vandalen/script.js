@@ -24,7 +24,7 @@ var makePerson = function(persArr){
     
     
     nameArray.sort(function (a,b){return a.localeCompare(b, 'sv');}); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
-    names = nameArray.toString();                                       // though im still not sure how it works. Will look into it.
+    names = nameArray.toString();                                      
     names = names.split(",").join(", ");
     
 	ageArray.sort();
