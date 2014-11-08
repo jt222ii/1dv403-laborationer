@@ -23,18 +23,17 @@ var makePerson = function(persArr){
     }
     
     
-    nameArray.sort();
-    names = nameArray.toString();
+    nameArray.sort(function (a,b){return a.localeCompare(b, 'sv');}); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+    names = nameArray.toString();                                       // though im still not sure how it works. Will look into it.
     names = names.split(",").join(", ");
     
 	ageArray.sort();
 
     maxAge = Math.max.apply(Math, ageArray);
     minAge = Math.min.apply(Math, ageArray); 
-
     
     averageAge = ageArray.reduce(function(a, b) { return a + b });
-    averageAge = averageAge / ageArray.length;
+    averageAge = averageAge / ageArray.length; 
 
     result = {minAge: minAge, maxAge: maxAge, averageAge: Math.round(averageAge), names: names};
     

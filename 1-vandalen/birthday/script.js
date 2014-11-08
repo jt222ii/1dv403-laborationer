@@ -2,7 +2,7 @@
 
 window.onload = function(){
 
-	
+
 	var birthday = function(date){
 		
 
@@ -13,12 +13,14 @@ window.onload = function(){
 			var days = 0;
 			var months = 0;
 			var numberOfDays = 0;
+			
+			var oneDay = 1000*60*60*24;
 
 			var BirthDayNextYear = new Date();
 			
 			usersBirthday.setFullYear(dateNow.getFullYear());
-			numberOfDays = (usersBirthday.getTime() - dateNow.getTime())/1000/60/60/24; 
-
+			numberOfDays = (usersBirthday.getTime() - dateNow.getTime())/oneDay; 
+			numberOfDays = Math.ceil(numberOfDays); 
 			
 			days = usersBirthday.getDate() - dateNow.getDate();
 			months = usersBirthday.getMonth() - dateNow.getMonth();
@@ -29,7 +31,7 @@ window.onload = function(){
 			
 			// om användaren inte fyllt år eller fyller år
 		    //if (usersBirthday.getMonth() - dateNow.getMonth() >= 0 && usersBirthday.getDate() - dateNow.getDate() >= 0)
-			if ((usersBirthday.getTime() - dateNow.getTime())/1000/60/60/24 >= -1)
+			if ((usersBirthday.getTime() - dateNow.getTime())/oneDay >= -1)
 			{
 				//if birthday
 				if (days === 0 && months === 0 )
@@ -49,7 +51,7 @@ window.onload = function(){
 			else
 			{
 			/*	BirthDayNextYear.setFullYear(usersBirthday.getFullYear()-1);
-				return (usersBirthday.getTime() - BirthDayNextYear.getTime())/1000/60/60/24 ;  */
+				return (usersBirthday.getTime() - BirthDayNextYear.getTime())/oneDay;  */
 				return numberOfDays + 365;
 			}
 
