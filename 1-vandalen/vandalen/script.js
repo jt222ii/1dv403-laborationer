@@ -11,27 +11,31 @@ var makePerson = function(persArr){
     var ageArray = [];
     var result = {}; 
 
-    for(var i=0;i<persArr.length; i += 1)
+ /*   for(var i=0;i<persArr.length; i += 1)
     {
        nameArray[i] = persArr[i]['name'];   //persArr[i].name; fungerar också
     }
-    
-    
-        for(var i=0;i<persArr.length; i += 1)
+
+    for(var i=0;i<persArr.length; i += 1)
     {
        ageArray[i] = persArr[i]['age'];   //persArr[i].name; fungerar också
-    }
+    }*/
+    ageArray = persArr.map(function(ageArr){
+        return ageArr.age;
+    });
+    nameArray = persArr.map(function(nameArr){
+        return nameArr.name;}).sort(function (a,b){return a.localeCompare(b, 'sv');});
     
     
-    nameArray.sort(function (a,b){return a.localeCompare(b, 'sv');}); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
-    names = nameArray.toString();                                      
+    //nameArray.sort(function (a,b){return a.localeCompare(b, 'sv');}); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+    names = nameArray.toString();                                     
     names = names.split(",").join(", ");
     
-	ageArray.sort();
+	//ageArray.sort();
 
     maxAge = Math.max.apply(Math, ageArray);
     minAge = Math.min.apply(Math, ageArray); 
-    
+
     averageAge = ageArray.reduce(function(a, b) { return a + b });
     averageAge = averageAge / ageArray.length; 
 

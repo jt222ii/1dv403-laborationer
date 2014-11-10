@@ -30,22 +30,13 @@ window.onload = function(){
 			{throw new Error("Ange ett datum...");}
 			
 			// om användaren inte fyllt år eller fyller år
-		    //if (usersBirthday.getMonth() - dateNow.getMonth() >= 0 && usersBirthday.getDate() - dateNow.getDate() >= 0)
-			if ((usersBirthday.getTime() - dateNow.getTime())/oneDay >= -1)
+
+			if (numberOfDays >= 0)
 			{
-				//if birthday
-				if (days === 0 && months === 0 )
-				{
-					return 0;
-				} // return 0 för switch satsen nedan
-				//if birthday tomorrow
-				if (days === 1 && months === 0) 
-				{
-					return 1;
-				}
-				//else birthday later this year
+				if(numberOfDays === 0)
+				{return 0;}
 				else
-				return numberOfDays;
+				{return numberOfDays;}
 			}
 			//annars om man fyllt år
 			else
