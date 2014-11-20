@@ -10,21 +10,16 @@ window.onload = function(){
 			// Din kod här.
 			var dateNow = new Date();
 			var usersBirthday = new Date(date);
-			var days = 0;
 			var months = 0;
 			var numberOfDays = 0;
 			
 			var oneDay = 1000*60*60*24;
-
-			var BirthDayNextYear = new Date();
 			
 			usersBirthday.setFullYear(dateNow.getFullYear());
 			numberOfDays = (usersBirthday.getTime() - dateNow.getTime())/oneDay; 
 			numberOfDays = Math.ceil(numberOfDays); 
 			
-			days = usersBirthday.getDate() - dateNow.getDate();
 			months = usersBirthday.getMonth() - dateNow.getMonth();
-			//years = usersBirthday.getFullYear() - dateNow.getFullYear();
 			
 			if (date === "")
 			{throw new Error("Ange ett datum...");}
@@ -41,9 +36,8 @@ window.onload = function(){
 			//annars om man fyllt år
 			else
 			{
-			/*	BirthDayNextYear.setFullYear(usersBirthday.getFullYear()-1);
-				return (usersBirthday.getTime() - BirthDayNextYear.getTime())/oneDay;  */
-				return numberOfDays + 365;
+				usersBirthday.setFullYear(usersBirthday.getFullYear()+1);
+				return Math.ceil((usersBirthday.getTime() - dateNow.getTime())/oneDay);  
 			}
 
 
