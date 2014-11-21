@@ -3,24 +3,29 @@
 
 var MessageBoard = {
     messages: [],
-    
+    numberOfMessages:  0,
     init:function()
     {
-    var mess = new Message("testmeddelande", new Date());
-    //alert(mess);
-    console.log(mess.getText());
-    mess.setText("en annan text");
-    //alert(mess) 
-    console.log(mess.getText());
-    console.log(mess.getDate());
-    MessageBoard.getMessages();
+		var send = document.getElementById("button");
+		send.onclick = MessageBoard.sendMessage;
     },
     
-    getMessages: function(){
-        MessageBoard.messages.push(new Message("hej", new Date()), new Message("hök", new Date()), new Message("balle", new Date()));
-
-        console.log(MessageBoard.messages[0]);
-        console.log(MessageBoard.messages[2].getText());
+    sendMessage: function(){
+        var input = document.getElementById("textarea").value;
+        MessageBoard.messages.push(new Message(input, new Date()));
+       // alert(MessageBoard.messages[MessageBoard.numberOfMessages]);
+        MessageBoard.numberOfMessages++;
+        document.getElementById("numberOfMessages").innerHTML = "Antal Meddelanden: " + MessageBoard.numberOfMessages;
+        var arrayslot = MessageBoard.messages.length-1;
+        MessageBoard.RenderMessage(arrayslot);
+    },
+    RenderMessage: function(input){
+        
+        var text = document.createElement("p");
+        text.innerHTML = MessageBoard.messages[input].getHTMLText();
+        messagearea.appendChild(text);
+ 
+    
     }
     
     
