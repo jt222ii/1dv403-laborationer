@@ -1,3 +1,4 @@
+html{    background-color:#31A5CC;}
 header{
     font-size:45px;
     margin:auto;
@@ -9,6 +10,9 @@ main{
     background: linear-gradient(black,#186974, #186974);
     padding-bottom:15px;
     border-radius:5px;
+        box-shadow:0 15px 20px;
+    -webkit-box-shadow:0 15px 20px;
+    -moz-box-shadow:0 15px 20px;
 }
 body{
     width:37.9%;
@@ -16,9 +20,14 @@ body{
     margin-left:30%;
     margin-right:20%;
     padding:7px 7px 7px;
-    border:double 2px;
+/*    border:double 2px;
     border-radius:5px;
-    background-color:#31A5CC;
+    background-color:black;
+    background:radial-gradient(lightblue, black);
+    box-shadow:0 15px 20px;
+    -webkit-box-shadow:0 15px 20px;
+    -moz-box-shadow:0 15px 20px;*/
+
 }
 
 #textarea{
@@ -44,6 +53,7 @@ body{
     height:360px;
     border:ridge 5px #001D27;
     background:linear-gradient(#001D27,#004860, #186974, #69AEC5, #186974);
+    
 }
 #messagearea p
 {
