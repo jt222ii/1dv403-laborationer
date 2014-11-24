@@ -49,13 +49,13 @@ var MessageBoard = {
         timestamp.innerHTML = MessageBoard.messages[input].getDateText();
         //timestamp = document.createTextNode(MessageBoard.messages[input].getDateText());
         
-        img.className = "DeletePicture";
+        img.className = input;
         img.src = "delete.png";
-        timeimg.className = "TimePicture";
+        timeimg.className = "TimePicture"+input;
         timeimg.src = "Clock.png";
         
         var text = document.createElement("p");
-        text.id = "textID";
+        text.id = "textID"+input;
         text.innerHTML = MessageBoard.messages[input].getHTMLText();
         
         //text.appendChild(timeimg);
@@ -72,8 +72,9 @@ var MessageBoard = {
         img.onclick = function(e){
             if (confirm("Radera detta meddelande?"))
             { 
+               // alert(img.className);
                 MessageBoard.numberOfMessages = MessageBoard.numberOfMessages -1;
-                MessageBoard.messages.splice(input, 1);
+               // MessageBoard.messages.splice(id, 1);
                 text.parentNode.removeChild(text);
                 document.getElementById("numberOfMessages").innerHTML = "Antal meddelanden: "+MessageBoard.numberOfMessages;
             }
