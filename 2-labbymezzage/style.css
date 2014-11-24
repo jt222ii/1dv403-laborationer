@@ -10,7 +10,7 @@ main{
     background: linear-gradient(black,#186974, #186974);
     padding-bottom:15px;
     border-radius:5px;
-        box-shadow:0 15px 20px;
+    box-shadow:0 15px 20px;
     -webkit-box-shadow:0 15px 20px;
     -moz-box-shadow:0 15px 20px;
 }
@@ -31,7 +31,7 @@ body{
 }
 
 #textarea{
-    background-color:lightyellow;
+    background-color:lightblue;
     margin-right:5%;
     margin-left:5%;
 }
@@ -49,24 +49,27 @@ body{
     display:flex;
     flex-direction:column-reverse;*/
     overflow-y:scroll;
-    max-height:360px;
-    height:360px;
+    max-height:385px;
+    height:385px;
     border:ridge 5px #001D27;
     background:linear-gradient(#001D27,#004860, #186974, #69AEC5, #186974);
-    
 }
 #messagearea p
 {
     word-break:break-all;
-    border:solid #818244 5px;
+    /*border:solid #818244 5px;*/
     padding:7px 7px 7px;
     min-height:35px;
-    background-color:lightyellow;
+    background-color:lightblue;
     border-radius:10px;
     padding-bottom:20px;
+    margin:2%;
+    box-shadow:0 10px 10px;
+    -webkit-box-shadow:0 10px 10px;
+    -moz-box-shadow:0 10px 10px;
 }
 #numberOfMessages{
-    margin-left:10%;
+    margin-left:5%;
 }
 p{
     font-family:Verdana, Geneva, sans-serif;

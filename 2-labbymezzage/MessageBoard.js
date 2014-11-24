@@ -47,6 +47,7 @@ var MessageBoard = {
 
         
         timestamp.innerHTML = MessageBoard.messages[input].getDateText();
+        //timestamp = document.createTextNode(MessageBoard.messages[input].getDateText());
         
         img.className = "DeletePicture";
         img.src = "delete.png";
