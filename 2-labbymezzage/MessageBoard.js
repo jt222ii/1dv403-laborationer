@@ -49,13 +49,13 @@ var MessageBoard = {
         timestamp.innerHTML = MessageBoard.messages[input].getDateText();
         //timestamp = document.createTextNode(MessageBoard.messages[input].getDateText());
         
-        img.className = input;
+        img.className = "DeletePicture";
         img.src = "delete.png";
-        timeimg.className = "TimePicture"+input;
+        timeimg.className = "TimePicture";
         timeimg.src = "Clock.png";
         
         var text = document.createElement("p");
-        text.id = "textID"+input;
+        text.id = "textID";
         text.innerHTML = MessageBoard.messages[input].getHTMLText();
         
         //text.appendChild(timeimg);
