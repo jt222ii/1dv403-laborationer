@@ -30,7 +30,7 @@ var MessageBoard = {
         var input = document.getElementById("textarea").value;
         MessageBoard.messages.push(new Message(input, new Date()));
        // alert(MessageBoard.messages[MessageBoard.numberOfMessages]);
-        MessageBoard.numberOfMessages++;
+        MessageBoard.numberOfMessages += 1;
         document.getElementById("numberOfMessages").innerHTML = "Antal Meddelanden: " + MessageBoard.numberOfMessages;
         document.getElementById('textarea').value = "";
         var arrayslot = MessageBoard.messages.length-1;
@@ -43,7 +43,7 @@ var MessageBoard = {
         var timestamp = document.createElement("div");
         timestamp.id = "timestamp";
         var entry = document.createElement("section");
-        entry.id = "buttonsandtime"
+        entry.id = "buttonsandtime";
 
         
         timestamp.innerHTML = MessageBoard.messages[input].getDateText();
@@ -72,17 +72,27 @@ var MessageBoard = {
         img.onclick = function(e){
             if (confirm("Radera detta meddelande?"))
             { 
-               // alert(img.className);
-                MessageBoard.numberOfMessages = MessageBoard.numberOfMessages -1;
-               // MessageBoard.messages.splice(id, 1);
-                text.parentNode.removeChild(text);
-                document.getElementById("numberOfMessages").innerHTML = "Antal meddelanden: "+MessageBoard.numberOfMessages;
+                //MessageBoard.numberOfMessages = MessageBoard.numberOfMessages -1;
+                MessageBoard.messages.splice(input, 1);
+                MessageBoard.renderMessages();
+                document.getElementById("numberOfMessages").innerHTML = "Antal meddelanden: "+MessageBoard.messages.length;
+                
             }
         };
         timeimg.onclick = function(e){
             alert(MessageBoard.messages[input].getDate());
         };
+    },
+    
+        renderMessages: function(){
+        document.getElementById("messagearea").innerHTML = "";
+        
+        for(var j=0; j<MessageBoard.messages.length; ++j){
+            
+            MessageBoard.RenderMessage(j);
+        }
     }
+
 };
 window.onload = MessageBoard.init;
 
