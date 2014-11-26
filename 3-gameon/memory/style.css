@@ -1,0 +1,34 @@
+main{
+    width:100%;
+}
+#memoryCards{
+    width:434px;
+    height:auto;
+    margin-left:39%;
+    margin-right:40%;
+    margin-top:0;
+}
+p{
+    font-family:verdana;
+    text-align:center;
+    font-weight:bold;
+    font-size:17px;
+}
+table img{
+    height:auto;
+    width:auto;
+    margin:40px;
+}
+table tr td a{
+    background:radial-gradient(white,white,#330000);
+    display:block;
+}
+html{
+    background:lightblue;
+}
+header{
+    font-family:verdana;
+    text-align:center;
+    font-weight:bold;
+    font-size:60px;
+}
