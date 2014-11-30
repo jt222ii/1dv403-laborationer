@@ -6,19 +6,18 @@ var memory = {
     columns: 4,
     count: 0,
     
-    guesses:1,
+    canFlip: true,
     
-    testerino:0,
+    guesses:1,
+    flippedOrder:0,
     points: 0,
     
     
     parentN: null,
     flippedImages:0,
-    test1:null,
-    test2:null,
+    pictureOne:null,
+    pictureTwo:null,
     cardArea: null,
-    alink:null,
-    img: null,
     cell: null,
     
     init:function(){
@@ -40,24 +39,26 @@ var memory = {
             for (var j = 0; j < memory.columns; j++)
             {
                 memory.cell = document.createElement("td");
-                memory.alink = document.createElement("a");
-                memory.alink.className = "pics/"+memory.randArray[memory.count]+".png";
-                memory.img = document.createElement("img");
-                memory.img.id = "down";
+                var alink = document.createElement("a");
+                alink.picture = "pics/"+memory.randArray[memory.count]+".png";
+                var img = document.createElement("img");
+                img.id = "down";
                 
-                memory.img.src = "pics/0.png";
-                memory.img.id = "down";
-                memory.img.picture = "pics/"+memory.randArray[memory.count]+".png";
+                img.src = "pics/0.png";
+                img.id = "down";
+                img.picture = "pics/"+memory.randArray[memory.count]+".png";
+                img.disabled = false;
                 memory.count += 1;
                 
-                memory.alink.href = "#";
+                alink.href = "#";
                 
-                memory.alink.onkeypress = memory.click(memory.img, memory.img.className);
-                memory.img.onclick = memory.click(memory.img, memory.img.className); //
-                //memory.alink.addEventListener("keypress", memory.enterpress(this.value))
-               // memory.alink.addEventListener("click", memory.click(memory.img, memory.img.className))
-                memory.alink.appendChild(memory.img);
-                memory.cell.appendChild(memory.alink);
+                alink.img = img;
+                
+                
+                alink.addEventListener("keypress", memory.click);
+                alink.addEventListener("click", memory.click);
+                alink.appendChild(img);
+                memory.cell.appendChild(alink);
                 row.appendChild(memory.cell);
             }
             
@@ -67,7 +68,7 @@ var memory = {
         
     },
     
-    flipTile:function(img, classname){
+    flipTile:function(img, picture){
 
         if(memory.flippedImages === 2){
             memory.guesses += 1;
@@ -75,26 +76,21 @@ var memory = {
             memory.flippedImages = 0;
         }
         //console.log(memory.flippedImages);
-        img.src = classname;
-        img.id = "up"+memory.testerino;
-        document.getElementById('up'+memory.testerino).style.pointerEvents = 'none';
-        memory.testerino += 1;
+        img.src = picture;
+        img.id = "up"+memory.flippedOrder;
+        document.getElementById('up'+memory.flippedOrder).disabled = true;
+        memory.flippedOrder += 1;
         if(memory.flippedImages === 0)
-        {memory.test1 = img.src}
+        {memory.pictureOne = img.src}
         if(memory.flippedImages === 1)
         {
-            memory.test2 = img.src;
-            if(memory.test1 === memory.test2){
+            memory.pictureTwo = img.src;
+            if(memory.pictureOne === memory.pictureTwo){
                 console.log("korrekt gissning");
-                //document.getElementById("up0").removeEventListener("click"); //fick det inte funka med removeEventListener... använde addeventlistener innan.
-                //document.getElementById("up1").removeEventListener("click");
-                
-                //document.getElementById("up0").onclick = false; //denna funkar
-               // document.getElementById("up1").onclick = false;
-                document.getElementById('up0').style.pointerEvents = 'none'; //http://stackoverflow.com/a/18983026
-                document.getElementById('up1').style.pointerEvents = 'none';
-                document.getElementById("up0").parentNode.onkeypress = false;
-                document.getElementById("up1").parentNode.onkeypress = false;
+                document.getElementById('up0').disabled = true;
+                document.getElementById('up1').disabled = true;
+                document.getElementById('up0').parentNode.disabled = true;
+                document.getElementById('up1').parentNode.disabled = true;
                 document.getElementById("up0").id="correct";
                 document.getElementById("up1").id="correct";
 
@@ -109,38 +105,41 @@ var memory = {
                 }
             }
             else{
-
+                memory.canFlip = false;
                 console.log("felaktig gissning... vänder tillbaka");
-                setTimeout(memory.flipBack, 1000);
+                setTimeout(memory.flipBack, 700);
             }
-            memory.testerino = 0;
+            memory.flippedOrder = 0;
         }  
         
-        console.log(memory.test1 + " "+ memory.test2);
+        console.log(memory.pictureOne + " "+ memory.pictureTwo);
        
     },
     
     flipBack:function(){
-
-        document.getElementById('up0').style.pointerEvents = 'auto';
-        document.getElementById('up1').style.pointerEvents = 'auto';
+        memory.canFlip = true;
+        document.getElementById('up0').disabled = false;
+        document.getElementById('up1').disabled = false;
         document.getElementById("up0").src="pics/0.png";
         document.getElementById("up0").id="down";
         document.getElementById("up1").src="pics/0.png";
         document.getElementById("up1").id="down";
     },
     
-    click:function(img, className){ //http://stackoverflow.com/questions/20497291/javascript-memory-game-image-swapping/20497536#20497536
-                   return function(){
-                       console.log(className);
-                        memory.flipTile(img, className);
+    click:function(){ 
+
+                    if (this.img.disabled === false && memory.canFlip===true)
+                    {
+                       console.log(this.img.picture);
+                        memory.flipTile(this.img, this.img.picture);
                         memory.flippedImages += 1;
-                   };
+                    }
+              
                },
-    enterpress: function(e){if (e.keyCode == 13){
-                memory.click(memory.img, memory.img.className);
-                }},
+    //enterpress: function(e){if (e.keyCode == 13){
+     //           memory.click(memory.img, memory.img.picture);
+       //         }},
    
-}
+};
 
 window.onload = memory.init;
