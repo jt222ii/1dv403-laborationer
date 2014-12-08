@@ -1,0 +1,55 @@
+#quizField{
+text-align:center;
+font-family:'Alef', sans-serif;
+font-weight:bold;
+float:left;
+background-image:url("Papper1.png");
+width:305px;
+background-repeat:no-repeat;
+height:671px;
+max-height:671px;
+
+}
+#resultat{
+float:right;
+font-family:'Alef', sans-serif;
+font-weight:bold;
+background-image:url("Papper2.png");
+background-repeat:no-repeat;
+height:671px;
+width:305px;
+max-height:671px;
+
+}
+#list{
+    margin-left:92px;
+}
+#list p{
+    margin-left:2px;
+}
+#textarea{
+    
+    font-family:'Alef', sans-serif;
+    font-weight:bold;
+    font-size:14px;
+}
+main{
+    width:37.5%;
+    margin: 0 auto;
+    height:671;
+    max-height:671px;
+}
+p{
+    font-size:18px;
+    margin:10px;
+}
+header{
+    text-align:center;
+    font-size:40px;
+    font-family:'Alef', sans-serif;
+    font-weight:bold;
+    color:white;
+}
+html{
+    background-image:url("woodbackground.png");
+}

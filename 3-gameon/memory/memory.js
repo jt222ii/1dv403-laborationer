@@ -13,7 +13,7 @@ var memory = {
     points: 0,
     
     
-    parentN: null,
+
     flippedImages:0,
     pictureOne:null,
     pictureTwo:null,
@@ -136,9 +136,6 @@ var memory = {
                     }
               
                },
-    //enterpress: function(e){if (e.keyCode == 13){
-     //           memory.click(memory.img, memory.img.picture);
-       //         }},
    
 };
 
