@@ -9,28 +9,11 @@ var quiz = {
         document.getElementById("knapp").disabled = false;
         document.getElementById("textarea").disabled = false;
         document.getElementById("result").innerHTML = "...";
-        document.getElementById("list").innerHTML = "";
+        document.getElementById("list").innerHTML = "(antal fel skrivs ut när du är klar)";
         quiz.guessesArr = [];
         quiz.tries = 0;
         quiz.question = null;
         quiz.questionNr = 0;
-        quiz.renderQ("http://vhost3.lnu.se:20080/question/1");
-    },
-    
-    renderQ:function(url){
-        quiz.tries = 0;
-       // quiz.questionNr += 1;
-        var quizField = document.getElementById("question");
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function(){
-            if(xhr.readyState === 4 && xhr.status === 200)
-            {
-                quiz.question = JSON.parse(xhr.responseText);
-                quizField.innerHTML = quiz.question.question;
-            }
-        };
-        xhr.open("GET", url, true);
-        xhr.send(null);
         
 		var send = document.getElementById("knapp");
         send.onclick = function(e){
@@ -55,6 +38,25 @@ var quiz = {
                 {e.preventDefault()}
             }
         };
+        
+        quiz.renderQ("http://vhost3.lnu.se:20080/question/1");
+    },
+    
+    renderQ:function(url){
+        quiz.tries = 0;
+       // quiz.questionNr += 1;
+        var quizField = document.getElementById("question");
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4 && xhr.status === 200)
+            {
+                quiz.question = JSON.parse(xhr.responseText);
+                quizField.innerHTML = quiz.question.question;
+            }
+        };
+        xhr.open("GET", url, true);
+        xhr.send(null);
+
     },
     
     nextQ:function(input, url){
@@ -104,6 +106,7 @@ var quiz = {
     renderResult:function(){
         document.getElementById("knapp").disabled = true;
         document.getElementById("textarea").disabled = true;
+        document.getElementById("list").innerHTML = "";
         for (var i = 0; i < quiz.guessesArr.length; i++) {
             quiz.questionNr += 1;
             var result = document.createElement("p");
