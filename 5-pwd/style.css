@@ -21,7 +21,8 @@ footer{
     width:600px;
     position:fixed;
     bottom:0;
-    border:2px solid;
+    border-right:5px solid;
+    border-top:5px solid;
     border-color:black;
 }
 footer a img{
