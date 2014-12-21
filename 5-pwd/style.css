@@ -2,12 +2,13 @@
 https://unsplash.com/grid
 */
 html{
+    font-family:'Alef', sans-serif;
     height:100%;
-    background-image:url(pictures/standardbakgrund2.jpg);
-    background-size:cover;
+   /* background-image:url(pictures/standardbakgrund2.jpg);
+    background-size:cover;*/
 }
 body{
-    background-color:lightyellow;
+    background-color:lightblue;
     margin-left:0;
 }
 main{
@@ -44,3 +45,34 @@ footer a img{
     -moz-transform: scale(1.6);
     transform: scale(1.6);
 }
+#pictureWindow{
+
+    float:left;
+    position:relative;
+    border:2px solid;
+    background:lightyellow;
+    height:300px;
+    width:200px;
+}
+#pictureWindow:active{
+
+}
+#kryssbild{
+    margin:10px;
+    float:right;
+    background:darkgray;
+}
+#kryssbild:hover{
+    background:lightgray;
+}
+#topbar{
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    background:gray;
+    height:45px;
+    line-height:45px;
+    text-align:center;
+    font-weight:bold;
+}
+
