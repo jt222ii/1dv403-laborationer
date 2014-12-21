@@ -1,7 +1,7 @@
 "use strict";
 
 var htmldesktop = {
-
+    z:0,
 
     init:function(){
 
@@ -41,6 +41,7 @@ var htmldesktop = {
     },
     mouseDown:function(e){
          //window.addEventListener('mousemove', htmldesktop.moveWindow, true);
+         this.parentNode.style.zIndex = htmldesktop.z++;
          this.onmousemove = htmldesktop.moveWindow;
     },
     mouseUp:function(e){

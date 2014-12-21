@@ -46,9 +46,10 @@ footer a img{
     transform: scale(1.6);
 }
 #pictureWindow{
-
+    display:block;
+    z-index:-1;
     float:left;
-    position:relative;
+    position:absolute;
     border:2px solid;
     background:lightyellow;
     height:300px;
