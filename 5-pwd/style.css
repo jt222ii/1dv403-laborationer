@@ -14,9 +14,7 @@ body{
 main{
 
 }
-#container{
-    
-}
+
 footer{
     background:rgba(255,255,255,0.7);
     width:600px;
@@ -52,8 +50,13 @@ footer a img{
     position:absolute;
     border:2px solid;
     background:lightyellow;
-    height:300px;
-    width:200px;
+    height:50%;
+    width:20%;
+}
+#pictureArea{
+        overflow-y:scroll;
+        height:inherit;
+        height:85%;
 }
 #pictureWindow:active{
 
@@ -66,14 +69,21 @@ footer a img{
 #kryssbild:hover{
     background:lightgray;
 }
+
 #topbar{
     -webkit-user-select: none; /* Chrome/Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
+
+
     background:gray;
     height:45px;
     line-height:45px;
     text-align:center;
     font-weight:bold;
 }
-
+#bildAtaggar img{
+    background:black;
+    padding:1px;
+    margin:3px;
+}
