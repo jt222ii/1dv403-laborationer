@@ -74,16 +74,21 @@ footer a img{
     -webkit-user-select: none; /* Chrome/Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
-
-
     background:gray;
     height:45px;
     line-height:45px;
     text-align:center;
     font-weight:bold;
 }
-#bildAtaggar img{
+#bildAtaggar{
+    display:inline-block;
+    width:80px;
+    height:60px;
     background:black;
     padding:1px;
     margin:3px;
+    text-align:center;
+}
+#bildAtaggar img {
+    margin-top:5%;
 }
