@@ -10,6 +10,7 @@ function Gallery(desktop, wind){
         xhr.onreadystatechange = function(){
             if(xhr.readyState === 4 && xhr.status === 200)
             {
+                wind.maincontent.innerHTML = "";
                 bildarray = JSON.parse(xhr.responseText);
                 console.log(bildarray);
         
@@ -26,13 +27,11 @@ function Gallery(desktop, wind){
                     imgAtag.appendChild(img);
                     wind.maincontent.appendChild(imgAtag);
                 }
-                
-                
-                
+  
             }
             else
             {
-                
+                wind.maincontent.appendChild(loading);
             }
  
                 
