@@ -6,6 +6,8 @@ function Window(desktop, name, img, Script){
     var WindowTemplate = template.content.querySelector(".window");
     this.wind = WindowTemplate.cloneNode(true);
     
+    var windowtest = window;
+    
     
     
     this.maincontent = this.wind.querySelector(".pictureArea");
@@ -32,7 +34,6 @@ function Window(desktop, name, img, Script){
     // Will be called when user starts dragging an element
     function _drag_init(elem) {
         // Store the object of the element which needs to be moved
-        
         selected = elem;
         console.log(selected);
         x_elem = x_pos - selected.offsetLeft;
@@ -43,9 +44,38 @@ function Window(desktop, name, img, Script){
     function _move_elem(e) {
         x_pos = document.querySelector(".window") ? window.event.clientX : e.pageX;
         y_pos = document.querySelector(".window") ? window.event.clientY : e.pageY;
+
+        
         if (selected !== null) {
+            if(x_pos - x_elem > -1)
+            {
             selected.style.left = (x_pos - x_elem) + 'px';
+            }
+            else
+            {
+                selected.style.left = 0 + 'px';
+            }
+            if(y_pos - y_elem > -1)
+            {
             selected.style.top = (y_pos - y_elem) + 'px';
+            }
+            else
+            {
+                selected.style.top = 0 + 'px';
+            }
+            
+            if( (x_pos - x_elem + selected.offsetWidth) > document.querySelector("#desktop").offsetWidth )
+            {
+                console.log(selected.style.left);
+                selected.style.left = (document.querySelector("#desktop").offsetWidth - selected.offsetWidth) + 'px';
+            }
+            if( (y_pos - y_elem - selected.offsetHeight) > document.querySelector("#desktop").offsetHeight )
+            {
+                console.log(selected.style.left);
+                selected.style.top = (document.querySelector("#html").offsetHeight - selected.offsetHeight) + 'px';
+            }
+            
+
         }
     }
     
@@ -60,6 +90,10 @@ function Window(desktop, name, img, Script){
         this.parentNode.style.zIndex = desktop.zindex++;
         _drag_init(this.parentNode);
         return false;
+    };
+    
+    this.wind.querySelector('.topbar').parentNode.onmousedown = function (){
+        this.style.zIndex = desktop.zindex++;
     };
 
     this.wind.querySelector('.topbar').onmousemove = _move_elem;

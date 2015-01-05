@@ -9,12 +9,12 @@ html{
 }
 body{
     background-color:lightblue;
-    margin-left:0;
+    margin:0;
+    width:inherit;
    /* background-image:url(pictures/bakgrund1.jpg);
 */
 }
 main{
-
 }
 
 footer{
@@ -27,7 +27,8 @@ footer{
     border-top:5px solid;
     border-color:black;
 }
-footer a img{
+footer img{
+    margin:10px;
     display:inline-block;
     width:48px;
 
