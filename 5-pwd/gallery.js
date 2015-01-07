@@ -2,7 +2,8 @@
 
 function Gallery(desktop, wind){
         var loading = document.createElement("img");
-        loading.src = "pictures/ajax-loader.gif";
+        loading.src = "pictures/ajax-loader2.gif";
+        loading.className = "loader"
         var self = this;
         var bildarray = {};
         this.desktop = desktop;
