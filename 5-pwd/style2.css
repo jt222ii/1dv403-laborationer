@@ -38,20 +38,17 @@ footer img{
     width:48px;
 
 }
-.openPictures{
-    width:48px;
-    height: 48px;
-    margin: 24px;
-    -o-transition: 0.5s linear;
-    -webkit-transition: 0.5s linear;
-    -moz-transition: 0.5s linear;
-    transition: 0.5s linear;
+.bilder{
+    -o-transition: 0.2s linear;
+    -webkit-transition: 0.2s linear;
+    -moz-transition: 0.2s linear;
+    transition: 0.2s linear;
 
 }
-.openPictures:hover{
-    -webkit-transform: scale(1.6);
-    -moz-transform: scale(1.6);
-    transform: scale(1.6);
+.bilder:hover{
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    transform: scale(1.2);
 }
 .windowname{
     position:absolute;
@@ -99,22 +96,23 @@ footer img{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     display:inline;
+    /*height:auto;
+    width:auto;*/
 }
 .imageviewer .pictureArea{
     background:none;
-    display:inline;
+    overflow:hidden;
 }
-#pictureWindow:active{
-
+.imageviewer .pictureArea img{
+    
+    margin-bottom:-1.1%;
 }
-
-
 .kryssbild:hover{
     background:lightgray;
 }
 
 .topbar{
-   /* cursor:move;*/
+    cursor: -webkit-grab; cursor: -moz-grab;
     -webkit-user-select: none; /* Chrome/Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
@@ -124,7 +122,9 @@ footer img{
     text-align:center;
     font-weight:bold;
     position:static;
-
+}
+.topbar:active{
+   cursor: -webkit-grabbing; cursor: -moz-grabbing;
 }
 .appPicture{
     top: 9px;

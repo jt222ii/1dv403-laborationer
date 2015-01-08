@@ -36,8 +36,12 @@ function Window(desktop, name, img, Script){
         desktop.pos.y += 30; 
         this.wind.style.left = desktop.pos.x + 'px';
         desktop.pos.x += 30;
+    }
+    if((desktop.pos.x + this.wind.offsetWidth) < document.querySelector("#desktop").offsetWidth)
+    {
         
     }
+    
 
     var remove = this.wind.querySelector(".remove");
     remove.onclick = function(e){ 
