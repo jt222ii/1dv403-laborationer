@@ -40,7 +40,8 @@ function Window(desktop, name, img, Script){
     }
 
     var remove = this.wind.querySelector(".remove");
-    remove.onclick = function(){ 
+    remove.onclick = function(e){ 
+        
         self.removeWindow();
     };
     
@@ -108,8 +109,9 @@ function Window(desktop, name, img, Script){
     }
     
     // Bind the functions...
-    this.wind.onmousedown = function () {
-        this.style.zIndex = desktop.zindex++;
+    this.wind.onmousedown = function (e) {
+        
+        this.style.zIndex = desktop.zindex++ + 2;
         _drag_init(this);
         return false;
     };
@@ -121,6 +123,7 @@ function Window(desktop, name, img, Script){
 
 }
 
-Window.prototype.removeWindow = function(){
+Window.prototype.removeWindow = function(e){
+   
         this.wind.parentNode.removeChild(this.wind);
     };

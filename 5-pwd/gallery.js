@@ -7,7 +7,8 @@ function Gallery(desktop, wind){
         var self = this;
         var bildarray = {};
         this.desktop = desktop;
-        
+        var height = 0;
+        var width = 0;
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
             if(xhr.readyState === 4 && xhr.status === 200)
@@ -15,7 +16,7 @@ function Gallery(desktop, wind){
                 wind.maincontent.innerHTML = "";
                 bildarray = JSON.parse(xhr.responseText);
                 console.log(bildarray);
-        
+            
                 for (var i = 0; i < bildarray.length; i++) {
                     var imgAtag = document.createElement("a");
                     imgAtag.href = "#";
@@ -29,6 +30,17 @@ function Gallery(desktop, wind){
                     imgAtag.image = bildarray[i];
                     imgAtag.desktop = desktop;
                     
+
+                    
+                    if (bildarray[i].thumbHeight > height)
+                    {
+                        height = bildarray[i].thumbHeight;
+                    }
+                    if (bildarray[i].thumbWidth > width)
+                    {
+                        width = bildarray[i].thumbWidth;
+                    }
+                    
                    // imgAtag.addEventListener("click", self.pictureclick);
                     imgAtag.onclick = function(){ //varför kan jag inte ha imgAtag.onclick = self.pictureclick(this.image) ?
                         self.pictureclick(this.image);
@@ -36,13 +48,22 @@ function Gallery(desktop, wind){
                     imgAtag.appendChild(img);
                     wind.maincontent.appendChild(imgAtag);
                 }
-  
+                
+                var aTaggar = document.querySelectorAll(".bildAtaggar");
+                console.log(aTaggar);
+                console.log(height);
+                console.log(width);
+                for (var i = 0; i < aTaggar.length; i++) {
+                    aTaggar[i].style.width = width + 'px';
+                    aTaggar[i].style.height = height + 'px';
+                }
+                
             }
             else
             {
                 wind.maincontent.appendChild(loading);
             }
- 
+            
                 
 
         };
@@ -56,7 +77,7 @@ Gallery.prototype.pictureclick = function(image){
     var img = document.createElement("img");
     img.src = image.URL;
 
-    imageviewer.wind.className = "imageviewer"
+    imageviewer.wind.className = "imageviewer";
     
    // imageviewer.wind.style.height = image.height + 'px';
   //  imageviewer.wind.style.width = image.width + 'px';
