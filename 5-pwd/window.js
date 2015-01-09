@@ -37,9 +37,21 @@ function Window(desktop, name, img, Script){
         this.wind.style.left = desktop.pos.x + 'px';
         desktop.pos.x += 30;
     }
-    if((desktop.pos.x + this.wind.offsetWidth) < document.querySelector("#desktop").offsetWidth)
+    
+    if((desktop.pos.x + this.wind.offsetWidth) < document.querySelector("#html").offsetWidth)
     {
-        
+            this.wind.style.left = desktop.pos.x + 'px';
+            this.wind.style.top = desktop.pos.y + 'px';
+            desktop.pos.y += 30; 
+            desktop.pos.x += 30;
+    }
+    else
+    {
+        desktop.pos.x = 10;
+        this.wind.style.left = desktop.pos.x + 'px';
+        desktop.pos.x += 30; 
+        this.wind.style.top = desktop.pos.y + 'px';
+        desktop.pos.y += 30;
     }
     
 
@@ -71,8 +83,9 @@ function Window(desktop, name, img, Script){
     
     // Will be called when user dragging an element
     function _move_elem(e) {
-        x_pos = document.querySelector(".window") ? window.event.clientX : e.pageX;
-        y_pos = document.querySelector(".window") ? window.event.clientY : e.pageY;
+        var evt = window.event || e; //för att det ska fungera i firefox och chrome
+        x_pos = document.querySelector(".window") ? evt.clientX : e.pageX;
+        y_pos = document.querySelector(".window") ? evt.clientY : e.pageY;
 
         
         if (selected !== null) {

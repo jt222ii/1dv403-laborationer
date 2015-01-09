@@ -44,7 +44,7 @@ function Gallery(desktop, wind){
                    // imgAtag.addEventListener("click", self.pictureclick);
                     imgAtag.onclick = function(){ //varför kan jag inte ha imgAtag.onclick = self.pictureclick(this.image) ?
                         self.pictureclick(this.image);
-                    }
+                    };
                     imgAtag.appendChild(img);
                     wind.maincontent.appendChild(imgAtag);
                 }
