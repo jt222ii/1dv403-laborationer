@@ -110,7 +110,9 @@ footer img:hover{
 .kryssbild:hover{
     background:lightgray;
 }
-
+.resetbackground{
+    float:right;
+}
 .topbar{
     cursor: -webkit-grab; cursor: -moz-grab;
     -webkit-user-select: none; /* Chrome/Safari */        
