@@ -60,15 +60,17 @@ footer img:hover{
     z-index:-1;
     position:absolute;
     background:#A46E74;
+
     height:390px;
     width:336px;
-    overflow-y:hidden;
     resize:both;
+    overflow:hidden;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .pictureArea{
+
     overflow-y:scroll;
     height:inherit;
     resize:none;
@@ -123,7 +125,7 @@ footer img:hover{
     line-height:45px;
     text-align:center;
     font-weight:bold;
-    position:static;
+    position:relative;
 }
 .topbar:active{
    cursor: -webkit-grabbing; cursor: -moz-grabbing;

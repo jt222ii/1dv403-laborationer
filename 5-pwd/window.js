@@ -8,6 +8,7 @@ function Window(desktop, name, img, Script){
     var template = document.getElementById("template");
     var WindowTemplate = template.content.querySelector(".window");
     this.wind = WindowTemplate.cloneNode(true);
+
     
     this.pic = document.createElement("img");
     this.pic.src = img;
@@ -22,39 +23,6 @@ function Window(desktop, name, img, Script){
         
     this.desktop = desktop;
     desktop.body.appendChild(this.wind);
-    
-    if((desktop.pos.y + this.wind.offsetHeight) < document.querySelector("#html").offsetHeight)
-    {
-    this.wind.style.top = desktop.pos.y + 'px';
-    this.wind.style.left = desktop.pos.x + 'px';
-    desktop.pos.y += 30; 
-    desktop.pos.x += 30;
-    }
-    else
-    {
-        desktop.pos.y = 10;
-        this.wind.style.top = desktop.pos.y + 'px';
-        desktop.pos.y += 30; 
-        this.wind.style.left = desktop.pos.x + 'px';
-        desktop.pos.x += 30;
-    }
-    
-    if((desktop.pos.x + this.wind.offsetWidth) < document.querySelector("#html").offsetWidth)
-    {
-            this.wind.style.left = desktop.pos.x + 'px';
-            this.wind.style.top = desktop.pos.y + 'px';
-            desktop.pos.y += 30; 
-            desktop.pos.x += 30;
-    }
-    else
-    {
-        desktop.pos.x = 10;
-        this.wind.style.left = desktop.pos.x + 'px';
-        desktop.pos.x += 30; 
-        this.wind.style.top = desktop.pos.y + 'px';
-        desktop.pos.y += 30;
-    }
-    
 
     var remove = this.wind.querySelector(".remove");
     remove.onclick = function(e){ 
@@ -67,6 +35,19 @@ function Window(desktop, name, img, Script){
     this.script = new Script(this.desktop, this);
     }
     
+    //detta fungerar inte... den tar bredden och höjden på standardfönstret? ... verkar som bilden inte laddat när den kollar detta?
+    if((desktop.pos.y + this.wind.offsetHeight + 10) >= document.querySelector("#html").offsetHeight)
+    {
+        desktop.pos.y = 10;
+    }
+    if((desktop.pos.x + this.wind.offsetWidth + 30) >= document.querySelector("#html").offsetWidth)
+    {
+            desktop.pos.x = 30;
+    }
+    this.wind.style.top = desktop.pos.y + 'px';
+    this.wind.style.left = desktop.pos.x + 'px';
+    desktop.pos.y += 30; 
+    desktop.pos.x += 30;
     
     
     //följande har jag tagit hjälp ifrån: http://jsfiddle.net/tovic/Xcb8d/light/ men fått göra modifikationer för att det ska fungera
@@ -74,10 +55,14 @@ function Window(desktop, name, img, Script){
         x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
     
     // Will be called when user starts dragging an element
-    function _drag_init(elem) {
+    function _drag_init(elem, e) {
         // Store the object of the element which needs to be moved
         selected = elem;
         console.log(selected);
+        
+        x_pos = e.clientX; 
+        y_pos = e.clientY;
+        
         x_elem = x_pos - selected.offsetLeft;
         y_elem = y_pos - selected.offsetTop;
     }
@@ -123,21 +108,23 @@ function Window(desktop, name, img, Script){
     // Destroy the object when we are done
     function _destroy() {
         selected = null;
-        console.log(selected);
     }
-    
+    this.wind.onclick = function(e){ //för att nya rutor ska hamna bakom det man tryckte på
+        this.style.zIndex = desktop.zindex++ + 1;
+    };
     // Bind the functions...
-    this.wind.onmousedown = function (e) {
-        
-        this.style.zIndex = desktop.zindex++ + 2;
-        _drag_init(this);
+    this.wind.querySelector('.topbar').onmousedown = function (e) {
+        this.parentNode.style.zIndex = desktop.zindex++ + 2;
+        _drag_init(this.parentNode, e);
+        document.onmousemove = _move_elem; //fick flytta in dem. Fick hjälp av kristoffer. Hade jag dem utanför fungerade inte resize i firefox... varför? 
+        document.onmouseup = _destroy;
         return false;
     };
     
 
 
-    this.wind.onmousemove = _move_elem;
-    this.wind.onmouseup = _destroy;
+ //   this.wind.querySelector('.topbar').onmousemove = _move_elem;
+  //  this.wind.querySelector('.topbar').onmouseup = _destroy;
 
 }
 

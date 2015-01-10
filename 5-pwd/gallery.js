@@ -32,6 +32,9 @@ function Gallery(desktop, wind){
                     imgAtag.image = bildarray[i];
                     imgAtag.desktop = desktop;
                     
+                    imgAtag.bilden = document.createElement("img");
+                    imgAtag.bilden.src = imgAtag.imageurl.URL;
+                    
 
                     
                     if (bildarray[i].thumbHeight > height)
@@ -84,11 +87,8 @@ Gallery.prototype.pictureclick = function(image){
     var img = document.createElement("img");
     img.src = image.URL;
     imageviewer.wind.className = "imageviewer";
-    
-   // imageviewer.wind.style.height = image.height + 'px';
-  //  imageviewer.wind.style.width = image.width + 'px';
-    
     imageviewer.maincontent.appendChild(img);
+    
 };
 
 Gallery.prototype.rightclick = function(image){
