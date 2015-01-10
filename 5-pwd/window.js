@@ -3,6 +3,7 @@
 var selected = null;
 
 function Window(desktop, name, img, Script){
+    
     var self = this;
     var template = document.getElementById("template");
     var WindowTemplate = template.content.querySelector(".window");

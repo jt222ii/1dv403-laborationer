@@ -16,6 +16,8 @@ function Gallery(desktop, wind){
                 wind.maincontent.innerHTML = "";
                 bildarray = JSON.parse(xhr.responseText);
                 console.log(bildarray);
+                var imgdiv = document.createElement("div");
+                imgdiv.className = "imgdiv";
             
                 for (var i = 0; i < bildarray.length; i++) {
                     var imgAtag = document.createElement("a");
@@ -45,10 +47,15 @@ function Gallery(desktop, wind){
                     imgAtag.onclick = function(){ //varför kan jag inte ha imgAtag.onclick = self.pictureclick(this.image) ?
                         self.pictureclick(this.image);
                     };
+                    imgAtag.addEventListener('contextmenu', function(ev) {
+                        ev.preventDefault();
+                        self.rightclick(this.image);
+                        return false;
+                    }, false);
                     imgAtag.appendChild(img);
-                    wind.maincontent.appendChild(imgAtag);
+                    imgdiv.appendChild(imgAtag);
                 }
-                
+                wind.maincontent.appendChild(imgdiv);
                 var aTaggar = document.querySelectorAll(".bildAtaggar");
                 console.log(aTaggar);
                 console.log(height);
@@ -76,11 +83,15 @@ Gallery.prototype.pictureclick = function(image){
     var imageviewer = new Window(this.desktop, "imgviewer", "pictures/photo.svg");
     var img = document.createElement("img");
     img.src = image.URL;
-
     imageviewer.wind.className = "imageviewer";
     
    // imageviewer.wind.style.height = image.height + 'px';
   //  imageviewer.wind.style.width = image.width + 'px';
     
     imageviewer.maincontent.appendChild(img);
+};
+
+Gallery.prototype.rightclick = function(image){
+    
+    document.body.style.backgroundImage = "url("+image.URL+")";
 };
