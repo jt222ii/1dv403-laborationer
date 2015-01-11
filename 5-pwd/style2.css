@@ -60,7 +60,7 @@ footer img:hover{
     z-index:-1;
     position:absolute;
     background:#A46E74;
-
+    
     height:390px;
     width:336px;
     resize:both;
@@ -68,11 +68,10 @@ footer img:hover{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
 .pictureArea{
-
     overflow-y:scroll;
     height:inherit;
+
     resize:none;
     background:lightyellow;
 }
@@ -80,6 +79,25 @@ footer img:hover{
     display:inline-block;
     position:relative;
     padding:10px;
+}
+.pictureArea table{
+    margin:0 auto;
+}
+.pictureArea img{
+        height:auto;
+    width:auto;
+    padding:10px;
+}
+.pictureArea table tr td a{
+    background:radial-gradient(white,white,#330000);
+    display:inline-block;
+}
+.pictureArea table tr td a:hover, table tr td a:focus{
+    background:radial-gradient(#330000, white,white);
+    display:block;
+}
+#texarea{
+    text-align:center;
 }
 .imgdiv{
     margin-bottom:45px;

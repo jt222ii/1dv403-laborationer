@@ -1,81 +1,90 @@
 "use strict";
-var windW;
-
+//var canFlip = true;
 function Memory(desktop, wind){
-    memory.init(wind);
-    windW = wind;
-} 
-var memory = {
-  
-    rows: 4,
-    columns: 4,
-    count: 0,
+    var self = this;
+    this.wind = wind;
+    this.hej = "heeeej";
+    this.rows= 4;
+    this.columns= 4;
+    this.count= 0;
     
-    canFlip: true,
+    this.canFlip= true;
     
-    guesses:1,
-    flippedOrder:0,
-    points: 0,
+    this.guesses=1;
+    this.flippedOrder=0;
+    this.points= 0;
     
-    
+    this.firstflip;
+    this.secondflip;
 
-    flippedImages:0,
-    pictureOne:null,
-    pictureTwo:null,
-    cardArea: null,
-    cell: null,
+    this.flippedImages=0;
+    this.pictureOne=null;
+    this.pictureTwo=null;
+    this.cardArea= null;
     
-    init:function(wind){
-        var randArray = [];
-        randArray = memory.getPictureArray(memory.rows, memory.columns);
-        console.log(randArray);
-        memory.renderCard(wind, randArray);
-  
-    },
-    renderCard:function(wind, array){
-        var table = document.createElement("table");
-        //table.border = 1;
+    
+    this.randArray = [];
+    this.randArray = this.getPictureArray(this.rows, this.columns);
+    console.log(this.randArray);
+    //this.renderCard(this.wind, this.randArray);
+    
+    //table.border = 1;
+    this.table = document.createElement("table");
+    //table.border = 1;
 
-        memory.cardArea = document.getElementById("memoryCards");
-        
-        for (var i = 0; i < memory.rows; i++) 
+    this.cardArea = document.getElementById("memoryCards");
+    
+    for (var i = 0; i < this.rows; i++) 
+    {
+        var row = document.createElement("tr");
+        this.table.appendChild(row);
+        for (var j = 0; j < this.columns; j++)
         {
-            var row = document.createElement("tr");
-            table.appendChild(row);
-            for (var j = 0; j < memory.columns; j++)
-            {
-                memory.cell = document.createElement("td");
-                var alink = document.createElement("a");
-                alink.picture = "pics/"+array[memory.count]+".png";
-                var img = document.createElement("img");
-                img.id = "down";
-                
-                img.src = "pics/0.png";
-                img.id = "down";
-                img.picture = "pics/"+array[memory.count]+".png";
-                img.disabled = false;
-                memory.count += 1;
-                
-                alink.href = "#";
-                
-                alink.img = img;
-                
-                
-                alink.addEventListener("keypress", memory.click);
-                alink.addEventListener("click", memory.click);
-                alink.appendChild(img);
-                memory.cell.appendChild(alink);
-                row.appendChild(memory.cell);
-            }
+            var cell = document.createElement("td");
+            var alink = document.createElement("a");
+            var picture = "pics/"+this.randArray[this.count]+".png";
+            var img = document.createElement("img");
+            img.id = "down";
             
-            table.appendChild(row);
-        }
-        wind.maincontent.appendChild(table);
-        
-    },
-    
-    flipTile:function(img, picture){
+            img.src = "pics/0.png";
+            img.id = "down";
+            img.picture = "pics/"+this.randArray[this.count]+".png";
+            img.disabled = false;
 
+            this.count += 1;
+            
+            alink.href = "#";
+            
+            alink.img = img;
+            
+            
+            alink.addEventListener("keypress", function(){
+                self.click(this);
+                });
+            alink.addEventListener("click", function(){
+                self.click(this);
+                });
+            alink.appendChild(img);
+            cell.appendChild(alink);
+            row.appendChild(cell);
+        }
+        this.table.appendChild(row);
+    }
+    this.wind.maincontent.appendChild(this.table);
+    
+    
+} 
+Memory.prototype.click = function(alink){
+            var self = this;
+            if (alink.img.src === "http://1dv403-laborationer-jt222ii.c9.io/5-pwd/pics/0.png" && this.canFlip === true)
+            {
+               //console.log(alink.img.picture);
+                self.flipTile(alink.img, alink.img.picture, self);
+                self.flippedImages += 1;
+            }
+};
+Memory.prototype.flipTile = function(img, picture, memory){
+     
         if(memory.flippedImages === 2){
             memory.guesses += 1;
             console.log(memory.guesses);
@@ -84,12 +93,16 @@ var memory = {
         //console.log(memory.flippedImages);
         img.src = picture;
         img.id = "up"+memory.flippedOrder;
-        document.getElementById('up'+memory.flippedOrder).disabled = true;
+
         memory.flippedOrder += 1;
         if(memory.flippedImages === 0)
-        {memory.pictureOne = img.src}
+        {
+            memory.firstflip = img;
+            memory.pictureOne = img.src;
+        }
         if(memory.flippedImages === 1)
         {
+            memory.secondflip = img;
             memory.pictureTwo = img.src;
             if(memory.pictureOne === memory.pictureTwo){
                 console.log("korrekt gissning");
@@ -107,61 +120,36 @@ var memory = {
                     var text = document.createElement("p");
                     text.id = "texarea";
                     text.innerHTML = "Du klarade det på "+memory.guesses+" försök bra jobbat!";
-                    windW.maincontent.appendChild(text);
+                    memory.wind.maincontent.appendChild(text);
                 }
             }
             else{
+ 
                 memory.canFlip = false;
                 console.log("felaktig gissning... vänder tillbaka");
-                setTimeout(memory.flipBack, 700);
+                setTimeout(function(){
+                    //memory.flipBack();
+                    memory.canFlip = true;
+                    memory.firstflip.src = "pics/0.png";
+                    memory.secondflip.src = "pics/0.png";
+                }, 700);
             }
             memory.flippedOrder = 0;
         }  
         
-        console.log(memory.pictureOne + " "+ memory.pictureTwo);
-       
-    },
-    
-    flipBack:function(){
-        memory.canFlip = true;
-        document.getElementById('up0').disabled = false;
-        document.getElementById('up1').disabled = false;
-        document.getElementById("up0").src="pics/0.png";
-        document.getElementById("up0").id="down";
-        document.getElementById("up1").src="pics/0.png";
-        document.getElementById("up1").id="down";
-    },
-    
-    click:function(){ 
+        console.log(memory.pictureOne + " "+ memory.pictureTwo);    
+};
+/*Memory.prototype.flipBack = function(wind){
+            canFlip = true;
+            document.getElementById("up0").src="pics/0.png";
+            document.getElementById("up0").id="down";
+            document.getElementById("up1").src="pics/0.png";
+            document.getElementById("up1").id="down";
+};*/
 
-                    if (this.img.disabled === false && memory.canFlip===true)
-                    {
-                       console.log(this.img.picture);
-                        memory.flipTile(this.img, this.img.picture);
-                        memory.flippedImages += 1;
-                    }
-              
-               },
-               
-	
-	/*
-		Denna metod tar antalet rader och columner som inparameter.
-		
-		Metoden returnerar en array inneh�llandes utslumpade tal mellan 1 och (rows*cols)/2. Varje tal representeras tv�
-		g�nger och motsvarar s�ledes en spelbricka. 
-		
-		I en 4*4 matris kan Arrayen t.ex. se ut s� h�r:
-		[1,2,6,8,6,2,5,3,1,3,7,5,8,4,4,7]
-		
-		I en 2*4 matris kan Arrayen t.ex. se ut s� h�r:				
-		[3,4,4,1,2,1,2,3]
-	*/
-	
-	getPictureArray: function(rows, cols)
-	{
+Memory.prototype.getPictureArray = function(rows, cols){
 		var numberOfImages = rows*cols;
 		var maxImageNumber = numberOfImages/2;
-	
 	   	var imgPlace = [];
 	
 	   //Utplacering av bilder i Array
@@ -199,11 +187,7 @@ var memory = {
 			}
 			while(imageOneOK == false || imageTwoOK == false);		
 		}
-		console.log(imgPlace);
 		return imgPlace;
-	}
-
-   
 };
 
- 
+   
