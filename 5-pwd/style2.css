@@ -193,9 +193,19 @@ footer img:hover{
     bottom: 0;
 }
 .rssFeed{
+    padding:10px;
+    background:gainsboro;
     font-size:15px;
     margin:0px 10px 100px 10px;
 }
+.rssFeed h2{
+    padding-left:10px;
+    padding-right:10px;
+    background:brown;
+}
 .rssFeed a{
     font-size:10px;
+}
+.rssFeed p{
+    font-size:16px;
 }
