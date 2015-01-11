@@ -83,7 +83,7 @@ function Gallery(desktop, wind){
 
 Gallery.prototype.pictureclick = function(image){
     console.log(image);
-    var imageviewer = new Window(this.desktop, "imgviewer", "pictures/photo.svg");
+    var imageviewer = new Window(this.desktop, "imgviewer", "pictures/photo.svg", undefined, image.width, image.height);
     var img = document.createElement("img");
     img.src = image.URL;
     imageviewer.wind.className = "imageviewer";

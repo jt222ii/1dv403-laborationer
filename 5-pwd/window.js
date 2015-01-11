@@ -2,7 +2,7 @@
 
 var selected = null;
 
-function Window(desktop, name, img, Script){
+function Window(desktop, name, img, Script, width, height){
     
     var self = this;
     var template = document.getElementById("template");
@@ -34,21 +34,33 @@ function Window(desktop, name, img, Script){
     {
     this.script = new Script(this.desktop, this);
     }
-    
-    //detta fungerar inte... den tar bredden och höjden på standardfönstret? ... verkar som bilden inte laddat när den kollar detta?
-    if((desktop.pos.y + this.wind.offsetHeight + 10) >= document.querySelector("#html").offsetHeight)
+    if(name === "imgviewer")
     {
-        desktop.pos.y = 10;
+        if((desktop.pos.y + height + 45) >= document.querySelector("#html").offsetHeight)
+        {
+            desktop.pos.y = 10;
+        }
+        if((desktop.pos.x + width + 30) >= document.querySelector("#html").offsetWidth)
+        {
+                desktop.pos.x = 30;
+        }
     }
-    if((desktop.pos.x + this.wind.offsetWidth + 30) >= document.querySelector("#html").offsetWidth)
+    else
     {
-            desktop.pos.x = 30;
+        //detta fungerar inte... den tar bredden och höjden på standardfönstret? ... verkar som bilden inte laddat när den kollar detta?
+        if((desktop.pos.y + this.wind.offsetHeight + 10) >= document.querySelector("#html").offsetHeight)
+        {
+            desktop.pos.y = 10;
+        }
+        if((desktop.pos.x + this.wind.offsetWidth + 30) >= document.querySelector("#html").offsetWidth)
+        {
+                desktop.pos.x = 30;
+        }
     }
     this.wind.style.top = desktop.pos.y + 'px';
     this.wind.style.left = desktop.pos.x + 'px';
     desktop.pos.y += 30; 
     desktop.pos.x += 30;
-    
     
     //följande har jag tagit hjälp ifrån: http://jsfiddle.net/tovic/Xcb8d/light/ men fått göra modifikationer för att det ska fungera
     var x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer

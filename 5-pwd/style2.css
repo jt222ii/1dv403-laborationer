@@ -83,8 +83,8 @@ footer img:hover{
 .pictureArea table{
     margin:0 auto;
 }
-.pictureArea img{
-        height:auto;
+.pictureArea table img{
+    height:auto;
     width:auto;
     padding:10px;
 }
