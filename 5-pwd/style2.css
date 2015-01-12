@@ -14,8 +14,6 @@ body{
     margin:0;
     width:inherit;
     background-image:url(pictures/bakgrund1.jpg);
-
-
 }
 main{
  
@@ -33,7 +31,7 @@ footer{
     border-top-right-radius:5px;
 }
 footer img{
-        -o-transition: 0.2s linear;
+    -o-transition: 0.2s linear;
     -webkit-transition: 0.2s linear;
     -moz-transition: 0.2s linear;
     transition: 0.2s linear;

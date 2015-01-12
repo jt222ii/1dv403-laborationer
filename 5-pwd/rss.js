@@ -1,5 +1,5 @@
 "use strict";
-function Rss(desktop, wind){
+htmldesktop.Rss = function(desktop, wind){
     var self = this;
     this.update(desktop, wind);
     setInterval(function(){
@@ -7,7 +7,7 @@ function Rss(desktop, wind){
     }
     , 120000);
 }
-Rss.prototype.update = function(desktop, wind){
+htmldesktop.Rss.prototype.update = function(desktop, wind){
     console.log("uppdaterar rss1");
         var loading = document.createElement("img");
         loading.src = "pictures/ajax-loader2.gif";

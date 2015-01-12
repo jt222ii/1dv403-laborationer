@@ -1,8 +1,9 @@
 "use strict"
 
-var selected = null;
+//var selected = null;
 
-function Window(desktop, name, img, Script, width, height){
+htmldesktop.Window = function(desktop, name, img, Script, width, height){
+    var selected = null; 
     
     var self = this;
     var template = document.getElementById("template");
@@ -47,7 +48,7 @@ function Window(desktop, name, img, Script, width, height){
     }
     else
     {
-        //detta fungerar inte... den tar bredden och höjden på standardfönstret? ... verkar som bilden inte laddat när den kollar detta?
+
         if((desktop.pos.y + this.wind.offsetHeight + 10) >= document.querySelector("#html").offsetHeight)
         {
             desktop.pos.y = 10;
@@ -66,9 +67,7 @@ function Window(desktop, name, img, Script, width, height){
     var x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
         x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
     
-    // Will be called when user starts dragging an element
     function _drag_init(elem, e) {
-        // Store the object of the element which needs to be moved
         selected = elem;
         console.log(selected);
         
@@ -112,12 +111,9 @@ function Window(desktop, name, img, Script, width, height){
             {
                 selected.style.top = (document.querySelector("#html").offsetHeight - selected.offsetHeight) + 'px';
             }
-            
-
         }
     }
     
-    // Destroy the object when we are done
     function _destroy() {
         selected = null;
     }
@@ -140,7 +136,7 @@ function Window(desktop, name, img, Script, width, height){
 
 }
 
-Window.prototype.removeWindow = function(e){
+htmldesktop.Window.prototype.removeWindow = function(e){
    
         this.wind.parentNode.removeChild(this.wind);
     };

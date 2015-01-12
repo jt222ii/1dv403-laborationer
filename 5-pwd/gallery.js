@@ -1,9 +1,9 @@
 "use strict"
 
-function Gallery(desktop, wind){
+htmldesktop.Gallery = function(desktop, wind){
         var loading = document.createElement("img");
         loading.src = "pictures/ajax-loader2.gif";
-        loading.className = "loader"
+        loading.className = "loader";
         var self = this;
         var bildarray = {};
         this.desktop = desktop;
@@ -60,9 +60,6 @@ function Gallery(desktop, wind){
                 }
                 wind.maincontent.appendChild(imgdiv);
                 var aTaggar = document.querySelectorAll(".bildAtaggar");
-                console.log(aTaggar);
-                console.log(height);
-                console.log(width);
                 for (var i = 0; i < aTaggar.length; i++) {
                     aTaggar[i].style.width = width + 'px';
                     aTaggar[i].style.height = height + 'px';
@@ -81,9 +78,9 @@ function Gallery(desktop, wind){
         xhr.send(null);
 }
 
-Gallery.prototype.pictureclick = function(image){
+htmldesktop.Gallery.prototype.pictureclick = function(image){
     console.log(image);
-    var imageviewer = new Window(this.desktop, "imgviewer", "pictures/photo.svg", undefined, image.width, image.height);
+    var imageviewer = new htmldesktop.Window(this.desktop, "imgviewer", "pictures/photo.svg", undefined, image.width, image.height);
     var img = document.createElement("img");
     img.src = image.URL;
     imageviewer.wind.className = "imageviewer";
@@ -91,7 +88,7 @@ Gallery.prototype.pictureclick = function(image){
     
 };
 
-Gallery.prototype.rightclick = function(image){
+htmldesktop.Gallery.prototype.rightclick = function(image){
     
     document.body.style.backgroundImage = "url("+image.URL+")";
 };

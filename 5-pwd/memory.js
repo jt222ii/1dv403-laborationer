@@ -1,9 +1,9 @@
 "use strict";
 //var canFlip = true;
-function Memory(desktop, wind){
+htmldesktop.Memory = function(desktop, wind){
     var self = this;
     this.wind = wind;
-    this.hej = "heeeej";
+    
     this.rows= 4;
     this.columns= 4;
     this.count= 0;
@@ -74,7 +74,7 @@ function Memory(desktop, wind){
     
     
 } 
-Memory.prototype.click = function(alink){
+htmldesktop.Memory.prototype.click = function(alink){
             var self = this;
             if (alink.img.src === "http://1dv403-laborationer-jt222ii.c9.io/5-pwd/pics/0.png" && this.canFlip === true)
             {
@@ -83,7 +83,7 @@ Memory.prototype.click = function(alink){
                 self.flippedImages += 1;
             }
 };
-Memory.prototype.flipTile = function(img, picture, memory){
+htmldesktop.Memory.prototype.flipTile = function(img, picture, memory){
      
         if(memory.flippedImages === 2){
             memory.guesses += 1;
@@ -147,7 +147,7 @@ Memory.prototype.flipTile = function(img, picture, memory){
             document.getElementById("up1").id="down";
 };*/
 
-Memory.prototype.getPictureArray = function(rows, cols){
+htmldesktop.Memory.prototype.getPictureArray = function(rows, cols){
 		var numberOfImages = rows*cols;
 		var maxImageNumber = numberOfImages/2;
 	   	var imgPlace = [];

@@ -1,6 +1,6 @@
 "use strict";
 
-function AddApp(desktop, name, img, Script){
+htmldesktop.AddApp= function(desktop, name, img, Script){
     var that = this;
     this.desktop = desktop;
     this.name = name;
@@ -19,6 +19,6 @@ function AddApp(desktop, name, img, Script){
     this.menu.appendChild(this.picture);
 }
 
-AddApp.prototype.open = function(){
-    var wind = new Window(this.desktop, this.name, this.img, this.Script);
+htmldesktop.AddApp.prototype.open = function(){
+    var wind = new htmldesktop.Window(this.desktop, this.name, this.img, this.Script);
 };
